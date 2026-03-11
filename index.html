@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A secure static website demonstrating web security best practices." />
+    <title>Secure Website</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ===== HEADER / NAV ===== -->
+    <header class="site-header">
+      <div class="container nav-container">
+        <div class="logo">
+          <span class="lock-icon" aria-hidden="true">🔒</span>
+          <span>SecureSite</span>
+        </div>
+        <nav aria-label="Primary navigation">
+          <ul class="nav-list">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#headers">Security Headers</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container hero-content">
+        <h1 id="hero-heading">Built Secure by Default</h1>
+        <p class="hero-sub">
+          A modern static website deployed on Netlify with industry-standard
+          security hardening — HTTPS enforcement, strict Content Security
+          Policy, and hardened HTTP response headers.
+        </p>
+        <a href="#features" class="btn btn-primary">Explore Features</a>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section id="features" class="section" aria-labelledby="features-heading">
+      <div class="container">
+        <h2 id="features-heading">Security Features</h2>
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🔐</div>
+            <h3>HTTPS Everywhere</h3>
+            <p>
+              Every HTTP request is permanently redirected (301) to HTTPS via
+              Netlify redirect rules, ensuring all traffic is encrypted in
+              transit.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🛡️</div>
+            <h3>Content Security Policy</h3>
+            <p>
+              A strict CSP header prevents cross-site scripting (XSS) and
+              data-injection attacks by whitelisting only trusted content
+              sources.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🚫</div>
+            <h3>Clickjacking Protection</h3>
+            <p>
+              <code>X-Frame-Options: DENY</code> and
+              <code>frame-ancestors 'none'</code> in the CSP prevent the page
+              from being embedded in a malicious iframe.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📋</div>
+            <h3>HSTS Preloading</h3>
+            <p>
+              The <code>Strict-Transport-Security</code> header with a one-year
+              max-age and the <code>preload</code> directive ensures browsers
+              never connect over plain HTTP.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🔍</div>
+            <h3>MIME Sniffing Prevention</h3>
+            <p>
+              <code>X-Content-Type-Options: nosniff</code> stops browsers from
+              interpreting files as a different MIME type, blocking a class of
+              content-injection attacks.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🌐</div>
+            <h3>Permissions Policy</h3>
+            <p>
+              Camera, microphone, geolocation, and payment APIs are explicitly
+              disabled via the <code>Permissions-Policy</code> header, reducing
+              the attack surface.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECURITY HEADERS TABLE ===== -->
+    <section id="headers" class="section section-alt" aria-labelledby="headers-heading">
+      <div class="container">
+        <h2 id="headers-heading">Active Security Headers</h2>
+        <p class="section-sub">
+          These response headers are set for every page via
+          <code>netlify.toml</code>.
+        </p>
+        <div class="table-wrapper">
+          <table id="headers-table">
+            <thead>
+              <tr>
+                <th scope="col">Header</th>
+                <th scope="col">Value</th>
+                <th scope="col">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Strict-Transport-Security</code></td>
+                <td><code>max-age=31536000; includeSubDomains; preload</code></td>
+                <td>Force HTTPS for 1 year</td>
+              </tr>
+              <tr>
+                <td><code>Content-Security-Policy</code></td>
+                <td><code>default-src 'self'; …</code></td>
+                <td>Prevent XSS &amp; data injection</td>
+              </tr>
+              <tr>
+                <td><code>X-Frame-Options</code></td>
+                <td><code>DENY</code></td>
+                <td>Block clickjacking</td>
+              </tr>
+              <tr>
+                <td><code>X-Content-Type-Options</code></td>
+                <td><code>nosniff</code></td>
+                <td>Prevent MIME sniffing</td>
+              </tr>
+              <tr>
+                <td><code>Referrer-Policy</code></td>
+                <td><code>strict-origin-when-cross-origin</code></td>
+                <td>Limit referrer leakage</td>
+              </tr>
+              <tr>
+                <td><code>Permissions-Policy</code></td>
+                <td><code>camera=(), microphone=(), …</code></td>
+                <td>Disable unused browser APIs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="container about-grid">
+        <div class="about-text">
+          <h2 id="about-heading">About This Project</h2>
+          <p>
+            This website was built as part of a <strong>Cryptography &amp;
+            Web Security</strong> course project. It demonstrates how a simple
+            static site can be hardened against common web threats using
+            freely available tools and hosting features.
+          </p>
+          <p>
+            Deployment is handled by
+            <a href="https://www.netlify.com" rel="noopener noreferrer" target="_blank">Netlify</a>,
+            which provides automatic TLS certificates via Let's Encrypt and
+            allows fine-grained control over HTTP response headers through the
+            <code>netlify.toml</code> configuration file.
+          </p>
+        </div>
+        <div class="about-checklist" aria-label="Security checklist">
+          <h3>Security Checklist</h3>
+          <ul id="checklist"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>&copy; <span id="year"></span> SecureSite — Cryptography Class Project</p>
+        <p class="footer-note">Deployed on Netlify · TLS by Let's Encrypt</p>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
